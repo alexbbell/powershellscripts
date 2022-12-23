@@ -1,5 +1,5 @@
 #there are a lot of directories, some of them have only 1 subdirectory, other have more than 1
-#if there's a subfolder 'Sourve', the value is True, otherwise False
+#if there's a subfolder 'Source', the value is True, otherwise False
 #the solution is in old-school style with ArrayList of objects
 
 $city = "TA"
