@@ -1,0 +1,39 @@
+# This sctipt allows to start and to stop the resources in azure
+# Set variables
+$resourceGroup = "rg-dev"
+$functionAppName = "func-dev"
+$serviceAppName = "app-dev-int"
+
+# Function to start services
+function Start-AzureResources {
+    Write-Host "Starting Azure Function App: $functionAppName"
+    az functionapp start --name $functionAppName --resource-group $resourceGroup
+
+    Write-Host "Starting Azure Service App: $serviceAppName"
+    az webapp start --name $serviceAppName --resource-group $resourceGroup
+
+    Write-Host "✅ Start operation completed."
+}
+
+# Function to stop services
+function Stop-AzureResources {
+    Write-Host "Stopping Azure Function App: $functionAppName"
+    az functionapp stop --name $functionAppName --resource-group $resourceGroup
+
+    Write-Host "Stopping Azure Service App: $serviceAppName"
+    az webapp stop --name $serviceAppName --resource-group $resourceGroup
+
+    Write-Host "✅ Stop operation completed."
+}
+
+# Main menu
+Write-Host "`nSelect an operation:"
+Write-Host "1. Start Azure Resources"
+Write-Host "2. Stop Azure Resources"
+$choice = Read-Host "Enter your choice (1 or 2)"
+
+switch ($choice) {
+    "1" { Start-AzureResources }
+    "2" { Stop-AzureResources }
+    default { Write-Host "Invalid choice. Exiting." }
+}
